@@ -1,0 +1,23 @@
+route="lista.dat"
+with open(route, "r") as file:
+    lista=file.readlines()
+
+lista_coordenadas=[]
+for coordenadas_string in lista:
+    coordenadas_string_divididas=coordenadas_string.split("  ")
+    x=float(coordenadas_string_divididas[0])
+    y=float(coordenadas_string_divididas[1])
+    coordenadas=[x,y]
+    lista_coordenadas.append(coordenadas)
+lista_maximos_locales=[]
+
+for i in range(1,len(lista_coordenadas)-1):
+    coordenada=lista_coordenadas[i]
+    coordenada_anterior=lista_coordenadas[i-1]
+    coordenada_siguiente=lista_coordenadas[i+1]
+    y=coordenada[1]
+    y_anterior=coordenada_anterior[1]
+    y_siguiente=coordenada_siguiente[1]
+    if y>y_anterior and y>y_siguiente:
+        lista_maximos_locales.append(coordenada)
+print(lista_maximos_locales)
